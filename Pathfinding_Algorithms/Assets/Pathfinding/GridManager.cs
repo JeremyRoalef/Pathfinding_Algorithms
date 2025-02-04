@@ -8,9 +8,19 @@ public class GridManager : MonoBehaviour
     [Min(1)]
     int length;
 
+    public int Length
+    {
+        get { return length; }
+    }
+
     [SerializeField]
     [Min(1)]
     int width;
+
+    public int Width
+    {
+        get { return width; }
+    }
 
     Dictionary<Vector2Int, TileNode> grid = new Dictionary<Vector2Int, TileNode>();
     public Dictionary<Vector2Int, TileNode> Grid

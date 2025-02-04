@@ -9,6 +9,7 @@ public class TileNode
     public Vector2Int position;
     public bool isExplored;
     public bool isWalkable;
+    public GameObject tileObj;
 
     public TileNode(Vector2Int position, bool isWalkable)
     {
@@ -16,6 +17,7 @@ public class TileNode
         isExplored = false;
         this.isWalkable = isWalkable;
         parent = null;
+        tileObj = null;
     }
 
 }

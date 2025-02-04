@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 697517167239789285}
   - component: {fileID: 4140336513889508681}
   - component: {fileID: 72287598131172519}
-  - component: {fileID: 6597914750920958810}
   - component: {fileID: 4649573155654594836}
   m_Layer: 0
   m_Name: Tile
@@ -111,22 +110,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6597914750920958810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071390020056957617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 531a0be9aa0362e4a817978a10016d92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coordinatesText: {fileID: 3755188231747006387}
-  renderer: {fileID: 4140336513889508681}
-  color1: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 0}
-  color2: {r: 0.74663067, g: 0.74663067, b: 0.74663067, a: 0}
 --- !u!114 &4649573155654594836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,9 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54b2d2cc3140614982cc5dbbe8b990a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinatesText: {fileID: 3755188231747006387}
   isWalkable: 1
-  notWalkable: {r: 0, g: 0, b: 0, a: 1}
   renderer: {fileID: 4140336513889508681}
+  color1: {r: 0.6549864, g: 0.6417454, b: 0.6417454, a: 0}
+  color2: {r: 0.73045814, g: 0.72356695, b: 0.72356695, a: 0}
+  notWalkableColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &8915329386523202543
 GameObject:
   m_ObjectHideFlags: 0
