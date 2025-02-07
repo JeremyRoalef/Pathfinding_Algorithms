@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 07910116dd88cee4cb908b7ed2b9add2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,9 +125,9 @@ MonoBehaviour:
   coordinatesText: {fileID: 3755188231747006387}
   isWalkable: 1
   renderer: {fileID: 4140336513889508681}
-  color1: {r: 0.6549864, g: 0.6417454, b: 0.6417454, a: 0}
-  color2: {r: 0.73045814, g: 0.72356695, b: 0.72356695, a: 0}
-  notWalkableColor: {r: 0, g: 0, b: 0, a: 1}
+  CheckeredMat1: {fileID: 2100000, guid: 07910116dd88cee4cb908b7ed2b9add2, type: 2}
+  CheckeredMat2: {fileID: 2100000, guid: fab7ef7f58e06464a93f90850669ae56, type: 2}
+  notWalkableMat: {fileID: 2100000, guid: 9f7650faa93300648a1a0856b0ff12ae, type: 2}
 --- !u!1 &8915329386523202543
 GameObject:
   m_ObjectHideFlags: 0

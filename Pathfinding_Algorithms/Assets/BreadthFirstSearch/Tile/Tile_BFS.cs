@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 
 [ExecuteAlways]
-public class Tile : MonoBehaviour
+public class Tile_BFS : MonoBehaviour
 {
     [SerializeField]
     TextMeshPro coordinatesText;
@@ -15,37 +15,44 @@ public class Tile : MonoBehaviour
     MeshRenderer renderer;
 
     [SerializeField]
-    Color color1;
+    Material CheckeredMat1;
 
     [SerializeField]
-    Color color2;
+    Material CheckeredMat2;
 
     [SerializeField]
-    Color notWalkableColor = Color.black;
+    Material notWalkableMat;
 
-    GridManager gridManager;
+    GridManager_BFS gridManager;
 
     private void Start()
     {
-        if (!Application.isPlaying) { return; }
+        renderer = GetComponent<MeshRenderer>();
+
+        if (!Application.isPlaying)
+        {
+            return;
+        }
 
         SetObjectCoordinates();
         InitializeGridColors();
 
-        gridManager = FindObjectOfType<GridManager>();
+        gridManager = FindObjectOfType<GridManager_BFS>();
         if (gridManager == null)
         {
             Debug.Log("No grid manager found");
         }
 
-        gridManager.Grid[GridManager.GetCoordinatesFromPosition(transform.position)].tileObj = gameObject;
+
+
+        gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].tileObj = gameObject;
 
         //If tile is not walkable, update the tile node at this position to not walkable
         if (!isWalkable)
         {
-            gridManager.Grid[GridManager.GetCoordinatesFromPosition(transform.position)].isWalkable = false;
-            //Debug.Log(gridManager.Grid[GridManager.GetCoordinatesFromPosition(transform.position)].position);
-            //Debug.Log(gridManager.Grid[GridManager.GetCoordinatesFromPosition(transform.position)].isWalkable);
+            gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].isWalkable = false;
+            //Debug.Log(gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].position);
+            //Debug.Log(gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].isWalkable);
         }
     }
 
@@ -59,16 +66,16 @@ public class Tile : MonoBehaviour
         //Creating checkered pattern for the tiles to better visualize nodes
         if ((tileCoordinates.x + tileCoordinates.y) % 2 > 0)
         {
-            renderer.sharedMaterial.color = color1;
+            renderer.sharedMaterial = CheckeredMat1;
         }
         else
         {
-            renderer.sharedMaterial.color = color2;
+            renderer.sharedMaterial = CheckeredMat2;
         }
 
         if (!isWalkable)
         {
-            renderer.sharedMaterial.color = notWalkableColor;
+            renderer.sharedMaterial = notWalkableMat;
             return;
         }
     }

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager_Dijkstra : MonoBehaviour
 {
     [SerializeField]
     [Min(1)]
@@ -22,8 +21,8 @@ public class GridManager : MonoBehaviour
         get { return width; }
     }
 
-    Dictionary<Vector2Int, TileNode> grid = new Dictionary<Vector2Int, TileNode>();
-    public Dictionary<Vector2Int, TileNode> Grid
+    Dictionary<Vector2Int, TileNode_BFS> grid = new Dictionary<Vector2Int, TileNode_BFS>();
+    public Dictionary<Vector2Int, TileNode_BFS> Grid
     {
         get { return grid; }
     }
@@ -42,13 +41,13 @@ public class GridManager : MonoBehaviour
             {
                 //Create node at given position
                 //Update second argument when feature is added.
-                TileNode newNode = new TileNode(new Vector2Int(i, j), true);
+                TileNode_BFS newNode = new TileNode_BFS(new Vector2Int(i, j), true);
                 grid[newNode.position] = newNode;
             }
         }
 
         //Debug.Log("Grid created: ");
-        //foreach (TileNode tileNode in grid.Values)
+        //foreach (TileNode_BFS tileNode in grid.Values)
         //{
         //    Debug.Log(tileNode.position);
         //}

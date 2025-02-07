@@ -11,7 +11,7 @@ public class BreadthFirstSearch : MonoBehaviour
     Vector2Int endCoordinates;
 
     [SerializeField]
-    GridManager gridManager;
+    GridManager_BFS gridManager;
 
     [SerializeField]
     Color pathColor = Color.green;
@@ -20,9 +20,9 @@ public class BreadthFirstSearch : MonoBehaviour
     //reached, and the grid it will be exploring. Exploration happens based on given criteria
     //(i.e. left, right, up, down).
 
-    Queue<TileNode> frontier = new Queue<TileNode>();
-    Dictionary<Vector2Int, TileNode> reached = new Dictionary<Vector2Int, TileNode>();
-    Dictionary<Vector2Int, TileNode> grid;
+    Queue<TileNode_BFS> frontier = new Queue<TileNode_BFS>();
+    Dictionary<Vector2Int, TileNode_BFS> reached = new Dictionary<Vector2Int, TileNode_BFS>();
+    Dictionary<Vector2Int, TileNode_BFS> grid;
     Vector2Int[] directions = {
         new Vector2Int(1,0), //right
         new Vector2Int(-1,0), //left
@@ -64,11 +64,11 @@ public class BreadthFirstSearch : MonoBehaviour
 
     void Start()
     {
-        List<TileNode> path = DoBreadthFirstSearch();
+        List<TileNode_BFS> path = DoBreadthFirstSearch();
         if (pathExists)
         {
             Debug.Log("Path generated");
-            foreach (TileNode node in path)
+            foreach (TileNode_BFS node in path)
             {
                 Debug.Log(node.position);
             }
@@ -79,9 +79,9 @@ public class BreadthFirstSearch : MonoBehaviour
         }
     }
 
-    List<TileNode> DoBreadthFirstSearch()
+    List<TileNode_BFS> DoBreadthFirstSearch()
     {
-        List<TileNode> path = new List<TileNode>();
+        List<TileNode_BFS> path = new List<TileNode_BFS>();
 
         /*
          * 1) start at first node. Set node to reached, and add to queue for neighbor exploration.
@@ -97,8 +97,8 @@ public class BreadthFirstSearch : MonoBehaviour
          */
 
         //1)
-        TileNode currentNode = grid[startCoordinates]; //start node
-        TileNode endNode;
+        TileNode_BFS currentNode = grid[startCoordinates]; //start node
+        TileNode_BFS endNode;
 
         reached.Add(startCoordinates, currentNode);
 
@@ -130,7 +130,7 @@ public class BreadthFirstSearch : MonoBehaviour
         return null;
     }
 
-    TileNode ExploreNeighbors(TileNode parentNode)
+    TileNode_BFS ExploreNeighbors(TileNode_BFS parentNode)
     {
         //Get neighboring node's coordinates using the directions list from above
         //Check if the node is in the grid (edge nodes will have null neighbors) and if it
@@ -164,7 +164,7 @@ public class BreadthFirstSearch : MonoBehaviour
 
             if (grid[neighborCoordinates].isWalkable)
             {
-                TileNode neighborNode = grid[neighborCoordinates];
+                TileNode_BFS neighborNode = grid[neighborCoordinates];
                 reached.Add(neighborCoordinates, neighborNode);
                 neighborNode.parent = parentNode;
                 frontier.Enqueue(neighborNode);
@@ -175,12 +175,12 @@ public class BreadthFirstSearch : MonoBehaviour
         return null;
     }
 
-    List<TileNode> BuildPath(TileNode endNode)
+    List<TileNode_BFS> BuildPath(TileNode_BFS endNode)
     {
         //Path will be built from end to start. Need to reverse the path to get start to end
-        List<TileNode> path = new List<TileNode>();
+        List<TileNode_BFS> path = new List<TileNode_BFS>();
 
-        TileNode currentNode = endNode;
+        TileNode_BFS currentNode = endNode;
         path.Add(currentNode);
         currentNode.tileObj.GetComponent<MeshRenderer>().material.color = pathColor;
 

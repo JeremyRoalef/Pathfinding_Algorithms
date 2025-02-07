@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class TileNode
+public class TileNode_BFS
 {
-    //TileNode has a position, parent node (for path construction), explored status,
+    //TileNode_BFS has a position, parent node (for path construction), explored status,
     //and isWalkable status
 
-    public TileNode parent;
+    public TileNode_BFS parent;
     public Vector2Int position;
     public bool isExplored;
     public bool isWalkable;
     public GameObject tileObj;
 
-    public TileNode(Vector2Int position, bool isWalkable)
+    public TileNode_BFS(Vector2Int position, bool isWalkable)
     {
         this.position = position;
         isExplored = false;
