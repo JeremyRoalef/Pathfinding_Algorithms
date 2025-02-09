@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tile_Dijkstra : MonoBehaviour
 {
     [SerializeField]
-    TextMeshPro coordinatesText;
+    TextMeshPro weightText;
 
     [SerializeField]
     bool isWalkable;
@@ -22,9 +22,13 @@ public class Tile_Dijkstra : MonoBehaviour
     [SerializeField]
     Material notWalkableMat;
 
+    [SerializeField]
+    [Min(0)]
+    int costToTravel = 0;
+
     GridManager_Dijkstra gridManager;
 
-    private void Start()
+    void Start()
     {
         renderer = GetComponent<MeshRenderer>();
 
@@ -36,36 +40,37 @@ public class Tile_Dijkstra : MonoBehaviour
         SetObjectCoordinates();
         InitializeGridColors();
 
+        //Get grid manager
         gridManager = FindObjectOfType<GridManager_Dijkstra>();
         if (gridManager == null)
         {
             Debug.Log("No grid manager found");
         }
 
-
-        if (!gridManager.Grid.ContainsKey(GridManager_BFS.GetCoordinatesFromPosition(transform.position)))
+        //Check if grid manager contains the given coordinates
+        if (!gridManager.Grid.ContainsKey(GridManager_Dijkstra.GetCoordinatesFromPosition(transform.position)))
         {
-            Debug.Log($"Tile at coordinates {GridManager_BFS.GetCoordinatesFromPosition(transform.position)} does not" +
+            Debug.Log($"Tile at coordinates {GridManager_Dijkstra.GetCoordinatesFromPosition(transform.position)} does not" +
                 $"exist. Disabling game object");
             gameObject.SetActive(false);
         }
+        //Grid manager has coordinates. Set values of tile node at given position
         else
         {
-            gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].tileObj = gameObject;
+            gridManager.Grid[GridManager_Dijkstra.GetCoordinatesFromPosition(transform.position)].tileObj = gameObject;
+            gridManager.Grid[GridManager_Dijkstra.GetCoordinatesFromPosition(transform.position)].costToTravel = costToTravel;
         }
-
-
 
         //If tile is not walkable, update the tile node at this position to not walkable
         if (!isWalkable)
         {
-            gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].isWalkable = false;
+            gridManager.Grid[GridManager_Dijkstra.GetCoordinatesFromPosition(transform.position)].isWalkable = false;
             //Debug.Log(gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].position);
             //Debug.Log(gridManager.Grid[GridManager_BFS.GetCoordinatesFromPosition(transform.position)].isWalkable);
         }
     }
 
-    private void InitializeGridColors()
+    void InitializeGridColors()
     {
         Vector2Int tileCoordinates = new Vector2Int(
             (int)transform.position.x,
@@ -89,14 +94,14 @@ public class Tile_Dijkstra : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (Application.isPlaying) { return; }
         SetObjectCoordinates();
         InitializeGridColors();
     }
 
-    private void SetObjectCoordinates()
+    void SetObjectCoordinates()
     {
         //Display the coordinates from real-world position
         //x-coordinate corresponds to parent x-coordinate
@@ -113,6 +118,6 @@ public class Tile_Dijkstra : MonoBehaviour
             tileCoordinates.y + ")";
 
         gameObject.name = coordinates;
-        coordinatesText.text = coordinates;
+        weightText.text = costToTravel + "\n" + coordinates;
     }
 }

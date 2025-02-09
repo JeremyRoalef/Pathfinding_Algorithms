@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07910116dd88cee4cb908b7ed2b9add2, type: 2}
+  - {fileID: 2100000, guid: fab7ef7f58e06464a93f90850669ae56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,12 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adfe55a26494e64eb2a53921dd4594b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coordinatesText: {fileID: 3755188231747006387}
+  weightText: {fileID: 3755188231747006387}
   isWalkable: 1
   renderer: {fileID: 4140336513889508681}
   CheckeredMat1: {fileID: 2100000, guid: 07910116dd88cee4cb908b7ed2b9add2, type: 2}
   CheckeredMat2: {fileID: 2100000, guid: fab7ef7f58e06464a93f90850669ae56, type: 2}
   notWalkableMat: {fileID: 2100000, guid: 9f7650faa93300648a1a0856b0ff12ae, type: 2}
+  nodeWeight: 1
 --- !u!1 &8915329386523202543
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ GameObject:
   - component: {fileID: 1480496405142200503}
   - component: {fileID: 3755188231747006387}
   m_Layer: 0
-  m_Name: Coordinates
+  m_Name: Weight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (0,0)
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38
+  m_fontSize: 65.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

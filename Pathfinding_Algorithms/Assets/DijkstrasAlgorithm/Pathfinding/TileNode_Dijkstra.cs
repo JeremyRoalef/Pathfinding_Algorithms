@@ -12,12 +12,12 @@ public class TileNode_Dijkstra : IComparable<TileNode_Dijkstra>
 
     public Vector2Int position;
 
-    public TileNode_BFS parent;
+    public TileNode_Dijkstra parent;
     public GameObject tileObj;
 
-    public TileNode_Dijkstra(Vector2Int position, bool isWalkable, int costToTravel)
+    public TileNode_Dijkstra(Vector2Int position, bool isWalkable)
     {
-        this.costToTravel = costToTravel;
+        this.costToTravel = 0;
 
         //Weight value set to infinity b/c of first-time traversal to node.
         this.weight = Mathf.Infinity; 

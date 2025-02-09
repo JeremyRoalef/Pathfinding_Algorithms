@@ -21,8 +21,8 @@ public class GridManager_Dijkstra : MonoBehaviour
         get { return width; }
     }
 
-    Dictionary<Vector2Int, TileNode_BFS> grid = new Dictionary<Vector2Int, TileNode_BFS>();
-    public Dictionary<Vector2Int, TileNode_BFS> Grid
+    Dictionary<Vector2Int, TileNode_Dijkstra> grid = new Dictionary<Vector2Int, TileNode_Dijkstra>();
+    public Dictionary<Vector2Int, TileNode_Dijkstra> Grid
     {
         get { return grid; }
     }
@@ -30,6 +30,11 @@ public class GridManager_Dijkstra : MonoBehaviour
     private void Awake()
     {
         GenerateGrid();
+    }
+
+    private void Start()
+    {
+        //DebugNodes();
     }
 
     void GenerateGrid()
@@ -41,19 +46,10 @@ public class GridManager_Dijkstra : MonoBehaviour
             {
                 //Create node at given position
                 //Update second argument when feature is added.
-                TileNode_BFS newNode = new TileNode_BFS(new Vector2Int(i, j), true);
+                TileNode_Dijkstra newNode = new TileNode_Dijkstra(new Vector2Int(i, j), true);
                 grid[newNode.position] = newNode;
             }
         }
-
-        //Debug.Log("Grid created: ");
-        //foreach (TileNode_BFS tileNode in grid.Values)
-        //{
-        //    Debug.Log(tileNode.position);
-        //}
-
-        //Debug.Log("Getting node at (1,3)");
-        //Debug.Log(grid[new Vector2Int(1, 3)].position);
     }
 
     public static Vector2Int GetCoordinatesFromPosition(Vector3 pos)
@@ -68,5 +64,17 @@ public class GridManager_Dijkstra : MonoBehaviour
     {
         Vector3 pos = new Vector3(coordinates.x, 0, coordinates.y);
         return pos;
+    }
+
+    void DebugNodes()
+    {
+        //Test node position, cost to travel, and weight
+
+        foreach (KeyValuePair<Vector2Int, TileNode_Dijkstra> keyValuePair in grid)
+        {
+            Debug.Log($"Node at position {keyValuePair.Key}:\n" +
+                $"Node Weight: {keyValuePair.Value.weight}\n" +
+                $"Cost to Travel: {keyValuePair.Value.costToTravel}\n");
+        }
     }
 }
